@@ -1,0 +1,39 @@
+{
+  "name": "leiloukou.com",
+  "version": "1.0.0",
+  "description": "Lil' Wuth, an experienced full-stack developer and UI/UX designer with additional experience in logo design. Hire me at a cheap price, and I'll get you what tou want. Contact me at jacobaleger12@gmail.com or at https://github.com/Leiloukou",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "dev": "nodemon main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leilouko/leiloukou.com.git"
+  },
+  "keywords": [
+    "Blog",
+    "Leiloukou",
+    "Lil' Wuth",
+    "Leil",
+    "Wuth"
+  ],
+  "author": "Lil' Wuth",
+  "bugs": {
+    "url": "https://github.com/leilouko/leiloukou.com/issues"
+  },
+  "homepage": "https://leiloukou.com/",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.1",
+    "cors": "^2.8.5",
+    "dotenv": "^14.2.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.8",
+    "nodemailer": "^6.7.2",
+    "nodemon": "^2.0.15",
+    "web-push": "^3.4.5",
+    "xoauth2": "^1.2.0"
+  }
+}

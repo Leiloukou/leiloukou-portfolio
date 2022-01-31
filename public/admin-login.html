@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+      <meta charset='UTF-8'>
+      <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+      <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+      <meta name='googlebot' content='noindex'>
+      <title>Admin | Leiloukou.com</title>
+      <style>body { font-family: monospace, arial, helvetica, sans-serif;} input { font-family: monospace, arial, helvetica, sans-serif; } #show { margin-top: 15px; }</style>
+</head>
+<body>
+      <h1>Login, admin.</h1>
+      <a>if you are not an admin, you can go to <a href='/'>our homepage.</a></p>
+      <form action='/admin/' method='post'>
+            <input type='text' name='name'>
+            <input type='password' name='password' id='password'>
+            <input type="submit" value='submit'>
+      </form>
+      <button id='show'>Show password.</button>
+      <span id='password-data'></span>
+      <script>
+let num = 1
+let pass = document.getElementById('password')
+let data = document.getElementById('password-data')
+document.getElementById('show').addEventListener('click', () => {
+      if (num === 1) {
+            data.innerText = pass.value
+            num = 0
+      } else {
+            let arr = []
+            for (let i = 0; i <= pass.value.length; i++) {
+                  arr.push('*')
+            }
+            data.innerText = arr.join('')
+            num = 1
+      }
+})
+      </script>
+</body>
+</html>

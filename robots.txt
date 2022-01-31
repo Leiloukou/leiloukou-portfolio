@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: http://leiloukou.com/sitemap.xml
