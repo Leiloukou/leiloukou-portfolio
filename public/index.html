@@ -54,7 +54,7 @@
       <meta property="og:site_name" content="Leiloukou.com">
       <meta property="og:image" content="./assets/images/favicon.svg">
       <meta name="robots" content="index, follow, notranslate">
-      <meta rel="canonical" href="https://leiloukou.com/home/">
+      <meta rel="canonical" href="https://leiloukou.com/">
       <meta name="keywords" content="Lil' Wuth, leiloukou, blog, website, portfolio, sites">
       <meta http-equiv="Expires" content="Tue, 31 December 2999 23:59:59 GMT">
       <meta name="revisit-after" content="14 days">
@@ -63,18 +63,19 @@
 
       <script type="text/javascript" src="./assets/scripts/script.js" async defer></script>
       <script async defer src="https://www.googletagmanager.com/gtag/js?id=G-YZLKB5ZZS4">
-            </script>
-            <script>
-                  window.dataLayer = window.dataLayer || [];
+      </script>
+      <script>
+            window.dataLayer = window.dataLayer || [];
 
-                  function gtag() {
-                        dataLayer.push(arguments);
-                  }
-                  gtag('js', new Date());
+            function gtag() {
+                  dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
 
-                  gtag('config', 'G-YZLKB5ZZS4');
-            </script>
-            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+            gtag('config', 'G-YZLKB5ZZS4');
+      </script>
+<script src='https://www.google.com/recaptcha/api.js' async defer></script>
+</script>
 </head>
 
 <body>
@@ -219,19 +220,31 @@
             </article>
             <section class="contact" id="contact">
                   <form action="/submit/contact" name="contact" method="post">
-                        <div class="disclaimer">Do not submit this form, or any other forms on this website, unless you
+                        <div class="disclaimer">Do not submit this form, or any other forms <br>on this website, unless
+                              you
                               are over 18 years of age or older.</div>
-                        <label for="contact__name">Your name </label>
-                        <input type="text" name="name" id="contact__name" required>
-                        <label for="contact__name">Your email </label>
-                        <input type="email" name="email" id="contact__email" required>
-                        <label for="contact__name">Subject </label>
-                        <input type="text" name="subject" id="contact__subject" required>
-                        <label for="contact__name">Message </label>
-                        <textarea name="body" id="contact__body" cols="18" rows="5"></textarea>
-                        <div class="g-recaptcha" data-sitekey="6Lf1YiEeAAAAAHf7vKsX59EXWv-H08--noZZIPlE"></div>
-                        <input type="submit" value="Submit">
+                        <div class="form-inner"><label for="contact__name">Your name </label>
+                              <input type="text" name="name" id="contact__name" required>
+                              <label for="contact__email">Your email </label>
+                              <input type="email" name="email" id="contact__email" required>
+                              <label for="contact__subjecct">Subject </label>
+                              <input type="text" name="subject" id="contact__subject" required>
+                              <label for="contact__body">Message </label>
+                              <textarea name="body" id="contact__body" cols="18" rows="5"></textarea>
+                              <div class="g-recaptcha" data-sitekey="6Lf1YiEeAAAAAHf7vKsX59EXWv-H08--noZZIPlE"
+                                    data-callback="recaptcha"></div>
+                              <label for="contact__privacy">I have read and accepted the <a href="/privacy">privacy
+                                          policy</a></label>
+                              <input type="checkbox" id="contact__privacy" required>
+                              <button id="contact__submit" disabled>Submit</button>
+                              <div class="form-inner">
                   </form>
+                  <script>
+                        function recaptcha() {
+                              		document.getElementById('contact__submit').disabled = false;
+                              		document.getElementById('contact__submit').style.cursor = 'pointer';
+                        }
+                  </script>
             </section>
       </main>
 

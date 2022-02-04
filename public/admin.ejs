@@ -47,8 +47,9 @@
 
       <h1 class="m-3">Welcome, Lil' Wuth.</h1>
 
-      <form action="/admin/post/" class="card m-3 mb-5" method="post">
+      <form action="/admin/" class="card m-3 mb-5" method="post">
             <h2 class="m-3 mb-0">New post</h2>
+            <input type="hidden" name="from" value="admin">
             <div class="m-3">
                   <label for="post-author" class="form-label">Author:</label>
                   <input name="author" type="text" class="form-control" id="post-author">
@@ -74,16 +75,16 @@
             </div>
       </form>
 
-      <form action="/admin/delete/" class="card m-3" method="post">
+      <form action="/admin/delete" class="card m-3" method="post">
             <div class="alert alert-danger brn">This process is irreversible!</div>
             <h2 class="m-3 mb-0">Delete post</h2>
             <div class="m-3">
-                  <label for="del-title" class="form-label">Title:</label>
-                  <input type="text" class="form-control" name="title" id="del-title">
+                  <label for="del-name" class="form-label">Id:</label>
+                  <input name="name" type="text" class="form-control" id="del-name">
             </div>
             <div class="m-3">
-                  <label for="del-name" class="form-label">Admin username:</label>
-                  <input name="name" type="text" class="form-control" id="del-name">
+                  <label for="del-id" class="form-label">Admin username:</label>
+                  <input type="text" class="form-control" name="title" id="del-id">
             </div>
             <div class="m-3">
                   <label for="del-password" class="form-label">Admin password:</label>
@@ -94,15 +95,15 @@
             </div>
       </form>
 
-      <form action="/admin/edit/" class="card m-3 mb-5" method="post">
+      <form action="/admin/" class="card m-3 mb-5" method="put">
             <h2 class="m-3 mb-0">Edit post</h2>
             <div class="m-3">
                   <label for="post-author" class="form-label">Author:</label>
                   <input name="author" type="text" class="form-control" id="post-author">
             </div>
             <div class="m-3">
-                  <label for="post-title" class="form-label">Title:</label>
-                  <input name="title" type="text" class="form-control" id="post-title">
+                  <label for="post-id" class="form-label">Id:</label>
+                  <input name="put_id" type="text" class="form-control" id="post-id">
             </div>
             <div class="m-3">
                   <label for="post-title" class="form-label">New title:</label>
@@ -113,11 +114,11 @@
                   <textarea name="body" class="form-control" id="post-body" rows="4"></textarea>
             </div>
             <div class="m-3">
-                  <label for="post-name" class="form-label">Author:</label>
+                  <label for="post-name" class="form-label">Admin username:</label>
                   <input name="name" type="text" class="form-control" id="post-name">
             </div>
             <div class="m-3">
-                  <label for="post-password" class="form-label">Author:</label>
+                  <label for="post-password" class="form-label">Admin password:</label>
                   <input name="password" type="password" class="form-control" id="post-password">
             </div>
             <div class="m-3 mb-5">

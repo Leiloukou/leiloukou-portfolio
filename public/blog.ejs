@@ -2,13 +2,70 @@
 <html lang="en">
 
 <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="shortcut icon"
+            href="https://raw.githubusercontent.com/Leiloukou/leiloukou-portfolio/34d03e1ece36a2496866b8da901860efd4487c7f/public/assets/images/favicon.svg"
+            type="image/svg+xml">
+            <link rel="me" type="text/html" href="https://leiloukou.com/blog/" />
+            <link rel="next" href="https://leiloukou.com/contact/" />
+            <link rel="previous" href="https://leiloukou.com/" />
+            <link rel="last" href="https://leiloukou.com/" />
+            <link rel='shortlink' href='https://leiloukou.com/' />
+            <link rel="EditURL" type="text/html" title="RSD" href="https://leiloukou.com/blog/" />
+            <link rel="pingback" href="https://leiloukou.com/home" />
+
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport"
+                  content="width=device-width, initial-scale=1.0, user-scalable=no, height=device-height">
+            <meta name="description"
+                  content="Lil' Wuth, an experienced fullstack developer and UI/UX designer with additional experience
+                  in logo design. Hire me at a cheap price, and I'll get you what tou want. Contact me at
+                  jacobaleger12@gmail.com or at https://github.com/Leiloukou">
+            <meta name="language" content="English">
+            <meta name="abstract" content="Hire me">
+            <meta name="subject" content="Hire me">
+            <meta name="topic" content="Hire me">
+            <meta name="Classification" content="Business">
+            <meta name="author" content="Lil' Wuth, jacobaleger12@gmail.com">
+            <meta name="designer" content="Lil' Wuth, jacobaleger12@gmail.com">
+            <meta name="reply-to" content="jacobaleger12@gmail.com">
+            <meta name="owner" content="Lil' Wuth, jacobaleger12@gmail.com">
+            <meta name="URL" content="https://Leiloukou.com/home/">
+            <meta name="directory" content="/home/">
+            <meta name="category" content="Hire me">
+            <meta name="coverage" content="Worldwide">
+            <meta name="distribution" content="Global">
+            <meta name="rating" content="General">
+            <meta name="apple-mobile-web-app-capable" content="yes">
+            <meta content="yes" name="apple-touch-fullscreen">
+            <meta name="apple-mobile-web-app-status-bar-style" content="black">
+            <meta name="format-detection" content="telephone=no">
+            <meta name="identifier-URL" content="https://Leiloukou.com/home/">
+            <meta name="summary"
+                  content="Lil' Wuth, an experienced fullstack developer and UI/UX designer with additional experience
+                  in logo design. Hire me at a cheap price, and I'll get you what tou want. Contact me at
+                  jacobaleger12@gmail.com or at https://github.com/Leiloukou">
+            <meta name="revised" content="Friday, Febuary 4, 2022, 12:39 pm">
+            <meta property="og:title" content="Leiloukou Blog">
+            <meta property="og:locale" content="en_US">
+            <meta property="og:type" content="article">
+            <meta property="og:description"
+                  content="Lil' Wuth, an experienced fullstack developer and UI/UX designer with additional experience
+                  in logo design. Hire me at a cheap price, and I'll get you what tou want. Contact me at
+                  jacobaleger12@gmail.com or at https://github.com/Leiloukou">
+            <meta property="og:url" content="https://Leiloukou.com/blog/">
+            <meta name="og:email" content="jacobaleger12@gmail.com" />
+            <meta name="og:country-name" content="USA" />
+            <meta property="og:site_name" content="Leiloukou.com">
+            <meta property="og:image" content="https://leiloukou.com/assets/images/favicon.png">
+            <meta name="robots" content="index, follow, notranslate">
+            <meta rel="canonical" href="https://leiloukou.com/blog/">
+            <meta name="keywords" content="Lil' Wuth, leiloukou, blog, website, portfolio, javascript">
+            <meta http-equiv="Expires" content="Tue, 31 December 2999 23:59:59 GMT">
+            <meta name="revisit-after" content="14 days">
       <title>Leiloukou | Blog</title>
       <link rel="stylesheet" href="./../assets/styles/reset.css">
       <link rel="stylesheet" href="./../assets/styles/blog.css">
-      <script type="text/javascript" src="./assets/scripts/script.js" async defer></script>
       <script async defer src="https://www.googletagmanager.com/gtag/js?id=G-YZLKB5ZZS4">
       </script>
       <script>
@@ -17,6 +74,7 @@
             function gtag() {
                   dataLayer.push(arguments);
             }
+            
             gtag('js', new Date());
 
             gtag('config', 'G-YZLKB5ZZS4');
@@ -48,13 +106,13 @@
                               </a>
                         </li>
                         <li class="middle-li">
-                              <a href="#portfolio">
-                                    My Work
+                              <a href="#footer">
+                                    Scroll to bottom
                               </a>
                         </li>
                         <li>
-                              <a href="#blog">
-                                    Blog
+                              <a href="./blog/contact">
+                                    Contact
                               </a>
                         </li>
                   </ul>
@@ -65,18 +123,60 @@
             instead.
             Don't use Brave, Edge, Tesla, or Safari. (Safari is awful, change my mind).
       </noscript>
-      <main>
+      <span class="blog-outer-main"><main>
             <% if (posts.length > 0) { %>
-            <% posts.forEach(post => { %>
-            <div class="card">
-                  <p class="author">By: <%= post.author %></p>
-                  <h2><%= post.title %></h2>
-                  <br>
-                  <p class="post-body" style="white-space: pre-line"><%= post.body %></p>
-            </div>
+            <% posts.reverse().forEach(post => { %>
+            <article class="card">
+                  <p class="author">By: <%= post.author _%></p>
+                  <h2><%- post.title _%></h2>
+                  <p class="post-body" data-post-body><%- post.body _%></p>
+                  <p class="id">Id: <%= post._id _%></p>
+            </article>
 
-            <% })} %>
-      </main>
+            <% })} else { %>
+
+            <article class="card">
+                  <h2>Sorry, there are currently no blog posts right now.</h2>
+                  <p class="post-body"> Please check back tomorrow to see if there are any a new blog posts.</p>
+            </article>
+
+            <% } %>
+      </main></span>
+      <footer class="footer" id="footer">
+            <div class="footer-col">
+                  <div class="footer-inner">
+                        <h3 class="footer-header">Pages</h3>
+                        <nav class="footer-nav">
+                              <li><a href=./home/>Home</a></li>
+                              <li><a href="#">Back to top</a></li>
+                              <li><a href="./blog/contact/">Contact</a></li>
+                              <li><a href="./blog/contact/">Help</a></li>
+                        </nav>
+                  </div>
+            </div>
+            <div class="footer-col">
+                  <div class="footer-inner">
+                        <h3 class="footer-header">Social Media</h3>
+                        <nav class="footer-nav">
+                              <li><a href="#footer">link</a></li>
+                              <li><a href="#footer">link</a></li>
+                              <li><a href="#footer">link</a></li>
+                              <li><a href="#footer">link</a></li>
+                        </nav>
+                  </div>
+            </div>
+            <div class="footer-col">
+                  <div class="footer-inner">
+                        <h3 class="footer-header">Our other sites</h3>
+                        <nav class="footer-nav">
+                              <li><a href="leilouki.netlify.app">Leilouki</a></li>
+                              <li><a href="leiloukou-join.netlify.app">Leiloukou-Join</a></li>
+                              <li><a href="#footer">Ecommerce</a></li>
+                              <li><a href="./home/">Our main site</a></li>
+                        </nav>
+                  </div>
+            </div>
+      </footer>
 </body>
 
 </html>

@@ -1,8 +1,9 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const Post = require('./post.js')
 require('dotenv').config()
 const dbUri = process.env.DB_URI;
-
+mongoose.connect(dbUri).catch((err) => console.log("error: ", err));
 const webPush = require('web-push')
 const bodyParser = require('body-parser')
 const nodemailer = require('nodemailer')
@@ -28,13 +29,6 @@ app.use(
 
 app.set('view engine', 'ejs')
 app.set('views', path.resolve(__dirname, 'public'))
-
-let posts = [{
-      author: 'Lil\' Wuth',
-      title: 'Welcome to my new blog!',
-      body: `Hello guys, and welcome to my new blog!
-In this blog you will find some great content, and if you want to give me suggestions, go to https://Leiloukou.com/blog/contribute/`
-}];
 
 const transporter = nodemailer.createTransport({
       pool: true,
@@ -69,14 +63,36 @@ app.get('/robots.txt', (req, res) => {
       res.status(200).sendFile(path.join(__dirname, './robots.txt'))
 })
 
-app.get('/about/', (req, res) => {
+app.get('/about', (req, res) => {
       res.status(200).sendFile(path.join(__dirname, './public/about.html'))
 })
 
-app.get('/blog', (req, res) => {
-      res.status(200).render('blog', {
-            posts
-      })
+app.get('/hire', (req, res) => {
+      res.status(200).sendFile(path.join(__dirname, './public/hire.html'))
+})
+
+app.get('/contact', (req, res) => {
+      res.status(200).sendFile(path.join(__dirname, '/public/contact.html'))
+})
+
+app.get('/privacy/', (req, res) => {
+      res.status(200).sendFile(path.join(__dirname, '/public/privacy-policy.html'))
+})
+
+app.get('/blog', async (req, res) => {
+      try {
+            var posts = await Post.find({})
+
+            res.status(200).render('blog', {
+                  posts
+            })
+      } catch (err) {
+            console.log(err);
+      }
+})
+
+app.get('/blog/contact', (req, res) => {
+      res.status(200).sendFile(path.join(__dirname, '/public/blog-contact.html'))
 })
 
 app.get('/admin', (req, res) => {
@@ -91,8 +107,26 @@ app.use(express.urlencoded({
       extended: false
 }))
 
-app.post('/admin/', (req, res) => {
-      if (req.body.name === process.env.ADMIN_USERNAME && req.body.password === process.env.ADMIN_PASSWORD) {
+app.post('/admin', async (req, res) => {
+      if (req.body.name === process.env.ADMIN_USERNAME && req.body.password === process.env.ADMIN_PASSWORD && req.body.from === 'admin') {
+            try {
+                  const post = await Post.create({
+                        author: req.body.author,
+                        title: req.body.title,
+                        body: req.body.body,
+                  })
+                  res.status(201).render("admin", {
+                        get: false
+                  });
+            } catch (err) {
+                  res.status(500).send(err)
+            }
+
+
+
+
+
+      } else if (req.body.name === process.env.ADMIN_USERNAME && req.body.password === process.env.ADMIN_PASSWORD) {
             res.status(200).render('admin', {
                   get: true
             });
@@ -101,56 +135,44 @@ app.post('/admin/', (req, res) => {
       }
 })
 
-app.post('/admin/post', async (req, res) => {
-      if (req.body.name === process.env.ADMIN_USERNAME && req.body.password === process.env.ADMIN_PASSWORD) {
-            await posts.push({
-                  author: req.body.author,
-                  title: req.body.title,
-                  body: req.body.body,
-            });
-
-            res.status(200).render("admin", {
-                  get: false
-            });
-      } else {
-            res.status(403).redirect("/admin");
-      }
-})
-
 app.post('/admin/delete', async (req, res) => {
-      if (req.body.name === process.env.ADMIN_USERNAME && req.body.password === process.env.ADMIN_PASSWORD) {
-            let deletePostArray = [...posts]
-            const index = deletePostArray.findIndex(post => post.title === req.body.title)
-            if (index !== -1) {
-                  deletePostArray.splice(index, 1)
-                  posts = deletePostArray
-            }
+      if (
+            req.body.title === process.env.ADMIN_USERNAME &&
+            req.body.password === process.env.ADMIN_PASSWORD
+      ) {
             res.status(200).render("admin", {
                   get: false
             });
+            try {
+                  await Post.findByIdAndDelete(
+                        req.body.name,
+                        function (err, result) {
+                              if (err) {
+                                    console.log(err);
+                              } else {}
+                        }
+                  ).clone();
+            } catch (err) {
+                  console.log(err);
+            }
       } else {
             res.status(403).redirect("/admin");
       }
 })
 
-app.post('/admin/edit', async (req, res) => {
+app.put('/admin/', async (req, res) => {
       if (req.body.name === process.env.ADMIN_USERNAME && req.body.password === process.env.ADMIN_PASSWORD) {
-            posts.forEach(post => {
-                  if (post.title === req.body.title) {
-                        if (req.body.new__title) {
-                              post.title = req.body.new__title
+            try {
+                  await Post.findByIdAndUpdate(
+                        req.body.put_id, {
+                              author: req.body.author,
+                              title: req.body.title,
+                              body: req.body.body
                         }
-                        if (req.body.body) {
-                              post.body = req.body.body
-                        }
-                        if (req.body.author) {
-                              post.body.author = req.body.author
-                        }
-                  }
-            })
-            res.status(200).render("admin", {
-                  get: false
-            });
+                  ).clone();
+            } catch (err) {
+                  console.log(err);
+            }
       } else {
             res.status(403).redirect("/admin");
       }
@@ -209,7 +231,4 @@ app.all('*', (req, res) => {
       res.status(404).sendFile(path.resolve(__dirname, './public/404.html'))
 })
 
-mongoose
-	.connect(dbUri)
-	.then(app.listen(PORT))
-	.catch((err) => console.log("error: ", err));
+app.listen(PORT);

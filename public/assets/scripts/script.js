@@ -1,14 +1,3 @@
-const xhr = new XMLHttpRequest()
-xhr.open('GET', 'blog.txt', true)
-
-xhr.onreadystatechange = function() {
-	if (this.readyState == 4 && this.status == 200) {
-
-	}
-}
-
-xhr.send()
-
 const publicVapidKey =
 	"BKLbDVcT-wXUN4H2WY8-a8imgK74uwDthIxAUnrqt8fnO7XvqEvqjaHmo4p7kzZWUQjnzBCxREW4jYB3Zp88ipg";
 
